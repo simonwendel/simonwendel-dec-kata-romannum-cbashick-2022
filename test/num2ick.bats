@@ -1,4 +1,4 @@
-load 'setup.bash'
+load 'fixture_setup.bash'
 
 num2ick() {
     $BIN_DIR/num2ick $1

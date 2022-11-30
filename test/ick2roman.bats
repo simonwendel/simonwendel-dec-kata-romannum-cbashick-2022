@@ -1,4 +1,4 @@
-load 'setup.bash'
+load 'fixture_setup.bash'
 
 ick2roman() {
     echo "$1" | $BIN_DIR/ick2roman | xargs

@@ -14,7 +14,7 @@
 ➔ You should have received a copy of the GNU General Public License
 ➔ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-( 10 )  PLEASE NOTE THAT THIS LINE DOES NOTHING
+( 10 )  PLEASE NOTE THAT THE MANUAL IS A GREAT READ
 ( 20 )  DO GIVE UP
         DO COME FROM ( 10 )
 ( 30 )  DO WRITE IN .1

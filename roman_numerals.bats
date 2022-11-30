@@ -5,41 +5,41 @@ function setup() {
     load './node_modules/bats-assert/load'
 
     mkdir -p bin
-    gcc -o bin/intercalify intercalify.c
-    ick -b to_roman.i && mv to_roman bin/
+    gcc -o bin/num2ick num2ick.c
+    ick -b ick2roman.i && mv ick2roman bin/
 }
 
-intercalify() {
-    ./bin/intercalify $1
+num2ick() {
+    ./bin/num2ick $1
 }
 
-to_roman() {
-    echo "$1" | ./bin/to_roman | xargs
+ick2roman() {
+    echo "$1" | ./bin/ick2roman | xargs
 }
 
 roman_numerals() {
-    ./bin/intercalify "$1" | ./bin/to_roman | xargs
+    ./bin/num2ick "$1" | ./bin/ick2roman | xargs
 }
 
-@test 'intercalify should exit with error given no number' {
-    run intercalify
+@test 'num2ick should exit with error given no number' {
+    run num2ick
     assert_failure 1
 }
 
-@test 'intercalify should exit with error given something that is not a number' {
-    run intercalify 2a
+@test 'num2ick should exit with error given something that is not a number' {
+    run num2ick 2a
     assert_failure 2
 }
 
-@test 'intercalify should spell out words given a number' {
-    run intercalify 9876543210
+@test 'num2ick should spell out words given a number' {
+    run num2ick 9876543210
     assert_success
     assert_output 'NINER EIGHT SEVEN SIX FIVE FOUR THREE TWO ONE OH'
 }
 
-@test "to_roman should convert spelled out number to roman numerals" {
+@test "ick2roman should convert spelled out number to roman numerals" {
     test() {
-        run to_roman "$1"
+        run ick2roman "$1"
         assert_success
         assert_output "$2"
     }

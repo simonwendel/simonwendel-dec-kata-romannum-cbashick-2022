@@ -1,24 +1,27 @@
 #!/usr/bin/env bats
 
-function setup() {
-    load './node_modules/bats-support/load'
-    load './node_modules/bats-assert/load'
+BIN_DIR=$BATS_TEST_DIRNAME/../bin
+SRC_DIR=$BATS_TEST_DIRNAME/../src
 
-    mkdir -p bin
-    gcc -o bin/num2ick num2ick.c
-    ick -b ick2roman.i && mv ick2roman bin/
+function setup() {
+    load '../node_modules/bats-support/load'
+    load '../node_modules/bats-assert/load'
+
+    mkdir -p $BIN_DIR
+    gcc -o $BIN_DIR/num2ick $SRC_DIR/num2ick.c
+    ick -b $SRC_DIR/ick2roman.i && mv $SRC_DIR/ick2roman $BIN_DIR
 }
 
 num2ick() {
-    ./bin/num2ick $1
+    $BIN_DIR/num2ick $1
 }
 
 ick2roman() {
-    echo "$1" | ./bin/ick2roman | xargs
+    echo "$1" | $BIN_DIR/ick2roman | xargs
 }
 
 roman_numerals() {
-    ./bin/num2ick "$1" | ./bin/ick2roman | xargs
+    $BIN_DIR/num2ick "$1" | $BIN_DIR/ick2roman | xargs
 }
 
 @test 'num2ick should exit with error given no number' {
@@ -56,17 +59,17 @@ roman_numerals() {
         assert_output "$2"
     }
 
-    test 1 'I'
-    test 2 'II'
-    test 3 'III'
-    test 4 'IV'
-    test 5 'V'
-    test 9 'IX'
-    test 21 'XXI'
-    test 42 'XLII'
-    test 50 'L'
-    test 100 'C'
-    test 500 'D'
-    test 666 'DCLXVI'
+    test    1 'I'
+    test    2 'II'
+    test    3 'III'
+    test    4 'IV'
+    test    5 'V'
+    test    9 'IX'
+    test   21 'XXI'
+    test   42 'XLII'
+    test   50 'L'
+    test  100 'C'
+    test  500 'D'
+    test  666 'DCLXVI'
     test 1000 'M'
 }

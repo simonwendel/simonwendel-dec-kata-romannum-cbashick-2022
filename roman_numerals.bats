@@ -17,6 +17,10 @@ to_roman() {
     echo "$1" | ./bin/to_roman | xargs
 }
 
+roman_numerals() {
+    ./bin/intercalify "$1" | ./bin/to_roman | xargs
+}
+
 @test 'intercalify should exit with error given no number' {
     run intercalify
     assert_failure 1
@@ -43,4 +47,26 @@ to_roman() {
     test 'ONE TWO' 'XII'
     test 'FOUR TWO' 'XLII'
     test 'SIX SIX SIX' 'DCLXVI'
+}
+
+@test "roman_numerals should convert number to roman numerals." {
+    test() {
+        run roman_numerals "$1"
+        assert_success
+        assert_output "$2"
+    }
+
+    test 1 'I'
+    test 2 'II'
+    test 3 'III'
+    test 4 'IV'
+    test 5 'V'
+    test 9 'IX'
+    test 21 'XXI'
+    test 42 'XLII'
+    test 50 'L'
+    test 100 'C'
+    test 500 'D'
+    test 666 'DCLXVI'
+    test 1000 'M'
 }

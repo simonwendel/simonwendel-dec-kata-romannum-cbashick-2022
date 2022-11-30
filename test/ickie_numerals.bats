@@ -1,5 +1,18 @@
 load 'fixture_setup.bash'
 
+@test "ickie_numerals wraps errors." {
+    failing() {
+        run $ROOT_DIR/ickie_numerals.sh "$1"
+        assert_failure
+        assert_output 'Usage: ./ickie_numerals <number>'
+    }
+
+    failing
+    failing 'a'
+    failing '1a'
+    failing '1 2'
+}
+
 @test "ickie_numerals should convert number to roman numerals." {
     assert() {
         run $ROOT_DIR/ickie_numerals.sh "$1"

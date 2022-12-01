@@ -53,6 +53,7 @@ load 'fixture_setup.bash'
     # INTERCAL butchered numerals
     assert          0 '_'
     assert       3000 'MMM'
+    assert       3999 'MMMCMXCIX'
     assert       4000 '__ IV'
     assert 4294967295 '__ _______ ivccxcivCMLXVIICCXCV'
 }

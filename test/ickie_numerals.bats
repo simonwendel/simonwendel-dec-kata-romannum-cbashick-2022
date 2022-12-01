@@ -49,4 +49,10 @@ load 'fixture_setup.bash'
     assert  500 'D'
     assert  666 'DCLXVI'
     assert 1000 'M'
+
+    # INTERCAL butchered numerals
+    assert          0 '_'
+    assert       3000 'MMM'
+    assert       4000 '__ IV'
+    assert 4294967295 '__ _______ ivccxcivCMLXVIICCXCV'
 }

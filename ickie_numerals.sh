@@ -18,7 +18,7 @@
 
 trap error_handler ERR
 function error_handler() {
-    echo 'Usage: ./ickie_numerals <number>' >/dev/stderr
+    echo 'Usage: ./ickie_numerals.sh <number>' >/dev/stderr
     exit -1
 }
 
